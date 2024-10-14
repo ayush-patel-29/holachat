@@ -1,9 +1,13 @@
 import React from 'react';
-import styles from './TextFormatter.module.css'; // Example CSS module
+import styles from './TextFormatter.module.css'; 
 
-const TextFormatter = ({ prompt }) => {
+interface TextFormatterProps{
+  prompt:string
+}
+
+const TextFormatter:React.FC<TextFormatterProps> = ({ prompt }) => {
   // Function to parse the prompt and convert it into JSX elements
-  const formatText = (text) => {
+  const formatText = (text:string):JSX.Element[] => {
     // Regex patterns for bold, bullets, and code blocks
     const boldPattern = /\*\*(.*?)\*\*/g;
     const bulletPattern = /^-\s+(.*)/gm;
