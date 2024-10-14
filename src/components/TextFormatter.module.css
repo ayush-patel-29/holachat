@@ -1,0 +1,39 @@
+.formattedText {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 10px;
+  color: white; /* Main text color */
+}
+
+/* Bold Text */
+strong {
+  font-weight: bold;
+  color: white; /* Bold text color */
+}
+
+/* Bullet Points */
+li {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: white; /* Bullet points color */
+}
+
+/* Code Block Styles */
+pre {
+  background-color: #1e1e1e; /* Dark background for code blocks */
+  border-radius: 5px;
+  padding: 10px;
+  overflow-x: auto;
+  margin: 10px 0;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  color: white; /* Light font color for code */
+}
+
+/* Paragraph styling */
+div {
+  margin-bottom: 1em; /* Add spacing between paragraphs */
+}
