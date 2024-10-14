@@ -1,12 +1,6 @@
 import Groq from "groq-sdk";
 
-// Ensure the environment variable is defined
-const apiKey = process.env.GROQ_API_KEY;
-if (!apiKey) {
-  throw new Error("GROQ_API_KEY is not defined");
-}
-
-const groq = new Groq({ apiKey });
+const groq = new Groq({ apiKey:import.meta.env.VITE_GROQ_API_KEY! ,dangerouslyAllowBrowser:true });
 
 interface ChatCompletion {
   choices: {
