@@ -2,7 +2,7 @@
 
 HolaChat is a modern, fast, and efficient chat interface built with React and TypeScript. It features a beautiful dark theme, code formatting, and real-time conversation capabilities.
 
-![HolaChat Screenshot](screenshot.png)
+![HolaChat Screenshot](./public/Screenshot.png)
 
 ## Features
 
@@ -47,6 +47,7 @@ yarn install
 3. Create a `.env` file in the root directory and add your API keys:
 ```env
 VITE_API_KEY=your_api_key_here
+VITE_GROQ_API_KEY=your_api_key_here
 ```
 
 4. Start the development server:
