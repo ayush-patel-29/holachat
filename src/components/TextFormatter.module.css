@@ -1,39 +1,153 @@
+.container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .formattedText {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   padding: 10px;
-  color: white; /* Main text color */
+  color: white;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.paragraph {
+  margin-bottom: 1.5em;
+  white-space: pre-wrap;
 }
 
 /* Bold Text */
 strong {
   font-weight: bold;
-  color: white; /* Bold text color */
+  color: #ffd700;
 }
 
 /* Bullet Points */
+ul {
+  margin-left: 20px;
+  margin-bottom: 1em;
+  padding-left: 20px;
+}
+
 li {
   list-style-type: disc;
-  margin-left: 20px;
-  color: white; /* Bullet points color */
+  margin-bottom: 0.5em;
+  color: white;
 }
 
 /* Code Block Styles */
-pre {
-  background-color: #1e1e1e; /* Dark background for code blocks */
-  border-radius: 5px;
-  padding: 10px;
+.codeBlockWrapper {
+  position: relative;
+  margin: 15px 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.codeBlockHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #2d2d2d;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.languageLabel {
+  font-size: 0.8em;
+  color: #666;
+  text-transform: uppercase;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', monospace;
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.copyButton:hover {
+  color: #fff;
+}
+
+.codeBlock {
+  background-color: #1e1e1e;
+  margin: 0;
+  padding: 15px;
   overflow-x: auto;
-  margin: 10px 0;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', monospace;
 }
 
-code {
-  font-family: 'Courier New', Courier, monospace;
+.codeBlock code {
+  display: block;
+  font-family: inherit;
   font-size: 14px;
-  color: white; /* Light font color for code */
+  line-height: 1.5;
+  color: #d4d4d4;
+  white-space: pre;
+  tab-size: 4;
 }
 
-/* Paragraph styling */
-div {
-  margin-bottom: 1em; /* Add spacing between paragraphs */
+/* Syntax highlighting overrides */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6A9955;
+}
+
+.token.punctuation {
+  color: #d4d4d4;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #569CD6;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #CE9178;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #D4D4D4;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #C586C0;
+}
+
+.token.function,
+.token.class-name {
+  color: #DCDCAA;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #D16969;
 }
