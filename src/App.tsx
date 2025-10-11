@@ -1,83 +1,56 @@
-import { useState } from 'react';
-import { main } from './lib/groq';
-import TextFormatter from "./components/TextFormatter"; // Import the TextFormatter component
-import "./App.css";
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import Landing from './pages/Landing'
+import Chat from './pages/Chat'
+import ProtectedRoute from './components/ProtectedRoute'
+import { useAuth } from './context/AuthContext'
+import './App.css'
+import Login from './pages/Login'
 
 const App = () => {
-  const [prompt, setPrompt] = useState<string>("");
-  const [content, setContent] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const getContent = async (): Promise<void> => {
-    if (!prompt.trim()) return;
-    
-    setIsLoading(true);
-    try {
-      const res: string = await main(prompt);
-      setPrompt(""); // Clear the prompt after the request
-      setContent([res]); // Replace previous content with new response
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        console.error(err.message);
-        setContent([`Error: ${err.message}`]);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { user, signOut } = useAuth()
+  const navigate = useNavigate()
 
   return (
-    <div className='h-[100vh] w-full flex flex-col justify-between'>
-      <nav className='text-white h-16 flex items-center '>
-        <a href="/" className='h-full flex items-center gap-4'>
-          <img src="/logo.jpg" alt="logo" className='h-20 w-20' />
-          <h1 className='text-2xl font-bold '>Hola Chat</h1>
-        </a>
-      </nav>
-      <div className='text-white h-full flex flex-col '>
-        <h1 className='w-full text-4xl text-center font-bold my-6'>HolaChat is Fast Conversational Inference</h1>
-        <div className='w-full max-h-[100vh] h-full flex items-center justify-center '>
-          <div className='w-[70%] max-h-[80%] h-full border-2 relative rounded-xl '>
-            <div className='w-full px-7 flex flex-row py-4 items-end'>
-              <textarea
-                placeholder='Type Your Prompt'
-                className='textArea '
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                disabled={isLoading}
-              />
-              <button
-                className={`w-[70px] text-white h-full flex justify-center items-center mb-2 ${
-                  (prompt.length === 0 || isLoading) && 'pointer-events-none cursor-not-allowed opacity-50'
-                }`}
-                onClick={getContent}
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                    <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
-                  </svg>
-                )}
-              </button>
-            </div>
-            <div className='text-white overflow-y-auto max-h-[80%] h-full content p-4'>
-              {isLoading ? (
-                <div className="flex justify-center items-center h-full">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-                </div>
-              ) : (
-                content.map((response, idx) => (
-                  <TextFormatter key={idx} prompt={response} />  // Using the TextFormatter to format the content
-                ))
-              )}
-            </div>
-          </div>
+    <div className="min-h-screen w-full flex flex-col bg-[#001220]">
+      <nav className="text-white h-16 flex items-center justify-between px-6">
+        <Link to="/" className="h-full flex items-center gap-3">
+          <img src="/logo.jpg" alt="logo" className="h-10 w-10 rounded-lg" />
+          <h1 className="text-2xl font-bold">Hola Chat</h1>
+        </Link>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate('/login')}
+            className="px-4 py-2 rounded-xl bg-[#031a2b] shadow-[inset_8px_8px_16px_#00070d,inset_-8px_-8px_16px_#01233d] hover:shadow-[8px_8px_16px_#00070d,-8px_-8px_16px_#01233d] transition"
+          >
+            Get Started
+          </button>
+          {user && (
+            <button
+              onClick={() => signOut()}
+              className="px-4 py-2 rounded-xl bg-[#031a2b] shadow-[8px_8px_16px_#00070d,-8px_-8px_16px_#01233d] hover:shadow-[inset_8px_8px_16px_#00070d,inset_-8px_-8px_16px_#01233d] transition"
+            >
+              Logout
+            </button>
+          )}
         </div>
+      </nav>
+
+      <div className="flex-1">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/app"
+            element={
+              <ProtectedRoute>
+                <Chat />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
