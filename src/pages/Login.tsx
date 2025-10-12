@@ -1,16 +1,7 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 const Login = () => {
-  const { signIn, user, loading } = useAuth()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (!loading && user) {
-      navigate('/app', { replace: true })
-    }
-  }, [user, loading, navigate])
+  const { signIn } = useAuth()
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-[#001220] text-white flex items-center justify-center px-6">
