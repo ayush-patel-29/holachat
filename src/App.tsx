@@ -4,11 +4,12 @@ import Landing from './pages/Landing'
 import Chat from './pages/Chat'
 import ProtectedRoute from './components/ProtectedRoute'
 import { useAuth } from './context/AuthContext'
+import { ChatProvider } from './context/ChatContext'
 import './App.css'
 import Login from './pages/Login'
 
 const App = () => {
-  const { user, signOut, loading } = useAuth()
+  const { user, loading } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -41,14 +42,6 @@ const App = () => {
               Get Started
             </button>
           )}
-          {user && (
-            <button
-              onClick={() => signOut()}
-              className="px-4 py-2 rounded-xl bg-[#031a2b] shadow-[8px_8px_16px_#00070d,-8px_-8px_16px_#01233d] hover:shadow-[inset_8px_8px_16px_#00070d,inset_-8px_-8px_16px_#01233d] transition"
-            >
-              Logout
-            </button>
-          )}
         </div>
       </nav>
 
@@ -60,7 +53,9 @@ const App = () => {
             path="/app"
             element={
               <ProtectedRoute>
-                <Chat />
+                <ChatProvider>
+                  <Chat />
+                </ChatProvider>
               </ProtectedRoute>
             }
           />
