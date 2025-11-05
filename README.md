@@ -1,65 +1,106 @@
-# HolaChat - Fast Conversational Inference
+# HolaChat - Modern AI Chat Application
 
-HolaChat is a modern, fast, and efficient chat interface built with React and TypeScript. It features a beautiful dark theme, code formatting, and real-time conversation capabilities.
+HolaChat is a feature-rich, real-time chat application built with React, TypeScript, and Supabase. It offers a seamless chat experience with AI integration, code formatting, and beautiful UI components.
 
 ![HolaChat Screenshot](./public/Screenshot.png)
 
-## Features
+## ✨ Features
 
-- 🚀 Fast and responsive chat interface
-- 🌙 Beautiful dark theme
-- 💻 Code formatting and syntax highlighting
-- 📋 Copy code functionality
-- 📝 Markdown support
-- 🔄 Real-time conversation
-- 🎨 Modern UI with smooth animations
+- 🔐 **Authentication** - Secure user authentication with Supabase
+- 🤖 **AI-Powered** - Integrated with Groq for intelligent responses
+- 💬 **Real-time Chat** - Instant messaging with real-time updates
+- 📝 **Markdown Support** - Rich text formatting with markdown
+- 💻 **Code Highlighting** - Beautiful syntax highlighting for code blocks
+- 🌓 **Dark/Light Theme** - Built-in theme support
+- 🚀 **Blazing Fast** - Built with Vite for optimal performance
+- 📱 **Responsive Design** - Works on all device sizes
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- React
-- TypeScript
-- Tailwind CSS
-- Prism.js (for code highlighting)
-- Vite (for fast development and building)
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS
+- **Authentication**: Supabase
+- **AI Integration**: Groq
+- **UI Components**: React Icons
+- **Markdown**: React Markdown with rehype/remark plugins
+- **State Management**: React Context API
+- **Routing**: React Router v6
 
-## Installation
+## 📁 Project Structure
+
+```
+holachat/
+├── public/                 # Static assets
+├── src/
+│   ├── assets/            # Images and static files
+│   ├── components/        # Reusable React components
+│   │   ├── LLMMessageRenderer.tsx  # AI message renderer with code highlighting
+│   │   ├── Sidebar.tsx    # Navigation sidebar
+│   │   ├── ProtectedRoute.tsx  # Authentication guard
+│   │   └── ...
+│   ├── context/           # React Context providers
+│   │   ├── AuthContext.tsx    # Authentication state
+│   │   └── ChatContext.tsx    # Chat state management
+│   ├── lib/               # Utility functions and API clients
+│   │   ├── supabaseClient.ts  # Supabase client configuration
+│   │   ├── groq.ts            # Groq API client
+│   │   └── database.types.ts  # TypeScript types for database
+│   ├── pages/             # Page components
+│   │   ├── Chat.tsx       # Main chat interface
+│   │   ├── Login.tsx      # Login page
+│   │   └── Landing.tsx    # Landing page
+│   ├── App.tsx            # Main application component
+│   └── main.tsx           # Application entry point
+├── .env.example          # Environment variables example
+├── package.json          # Project dependencies
+├── tsconfig.json         # TypeScript configuration
+├── tailwind.config.js    # Tailwind CSS configuration
+└── vite.config.ts        # Vite configuration
+```
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js (v16 or higher)
+- npm (v8 or higher) or yarn (v1.22 or higher)
+- Supabase account (for authentication)
+- Groq API key (for AI chat)
 
-### Setup
+### Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/ayush-patel-29/holachat.git
-cd holachat
-```
+   ```bash
+   git clone https://github.com/ayush-patel-29/holachat.git
+   cd holachat
+   ```
 
 2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-```
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
 
-3. Create a `.env` file in the root directory and add your API keys:
-```env
-VITE_API_KEY=your_api_key_here
-VITE_GROQ_API_KEY=your_api_key_here
-```
+3. Set up environment variables:
+   - Copy `.env.example` to `.env`
+   - Update the values with your Supabase and Groq API credentials
+   ```env
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   VITE_GROQ_API_KEY=your_groq_api_key
+   VITE_SUPABASE_DB_PASSWORD=your_supabase_db_password
+   ```
 
 4. Start the development server:
-```bash
-npm run dev
-# or
-yarn dev
-```
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+   The app will be available at `http://localhost:5173`
 
-5. Open your browser and navigate to `http://localhost:5173`
-
-## Building for Production
+## 🏗 Building for Production
 
 To create a production build:
 
@@ -68,60 +109,3 @@ npm run build
 # or
 yarn build
 ```
-
-The build files will be created in the `dist` directory.
-
-## Project Structure
-
-```
-holachat/
-├── src/
-│   ├── components/
-│   │   ├── TextFormatter.tsx
-│   │   └── TextFormatter.module.css
-│   ├── lib/
-│   │   └── groq.ts
-│   ├── App.tsx
-│   ├── App.css
-│   ├── main.tsx
-│   └── index.css
-├── public/
-│   └── logo.jpg
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
-```
-
-## Usage
-
-1. Type your message in the text area
-2. Click the send button or press Enter to send
-3. View the formatted response with code highlighting
-4. Use the copy button to copy code snippets
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Prism.js](https://prismjs.com/)
-- [Vite](https://vitejs.dev/)
-
-## Support
-
-If you encounter any issues or have questions, please open an issue in the GitHub repository.
