@@ -137,7 +137,9 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     if (!user) return
 
     // Don't create a new chat if the current session is empty
-    if (currentSession && currentSession.messages.length === 0) {
+    const currentChat = sessions.find((s) => s.id === currentSessionId)
+    if (currentChat && currentChat.messages.length === 0) {
+      // Just stay on the current empty chat
       return
     }
 

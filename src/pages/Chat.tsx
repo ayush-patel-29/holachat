@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { main } from '../lib/groq'
-import TextFormatter from '../components/TextFormatter'
+import LLMMessageRenderer from '../components/LLMMessageRenderer'
 import Sidebar from '../components/Sidebar'
 import { useChat } from '../context/ChatContext'
 import { FiMenu } from 'react-icons/fi'
@@ -102,8 +102,8 @@ const Chat = () => {
                       <div className="w-8 h-8 rounded-full bg-[#031a2b] flex items-center justify-center flex-shrink-0">
                         <span className="text-white text-sm font-semibold">AI</span>
                       </div>
-                      <div className="flex-1 pt-1">
-                        <TextFormatter prompt={message.content} />
+                      <div className="flex-1 pt-1 min-w-0 overflow-hidden">
+                        <LLMMessageRenderer content={message.content} />
                       </div>
                     </div>
                   )}

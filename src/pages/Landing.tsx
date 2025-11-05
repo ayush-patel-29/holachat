@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
 
 const Landing = () => {
-  const { signIn } = useAuth()
 
   return (
     <div className="min-h-screen bg-[#001220] text-white flex flex-col">
